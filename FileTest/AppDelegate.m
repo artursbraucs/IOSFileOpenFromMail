@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSURL *url = (NSURL *)[launchOptions valueForKey:UIApplicationLaunchOptionsURLKey];
+    if (url != nil && [url isFileURL]) {
+        ViewController* view = (ViewController*) self.window.rootViewController;
+        [view handleOpenURL:url];
+    }
+    return YES;
+}
+
+- (BOOL)application:(UIApplication *)app
+            openURL:(NSURL *)url
+            options:(NSDictionary<NSString *,
+                     id> *)options {
+    ViewController* view = (ViewController*) self.window.rootViewController;
+    [view handleOpenURL:url];
     return YES;
 }
 

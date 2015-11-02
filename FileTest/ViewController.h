@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIDocumentInteractionControllerDelegate>
 
+@property (nonatomic, readwrite) UIDocumentInteractionController* documentInteractionController;
+
+-(void)handleOpenURL:(NSURL*)url;
 
 @end
 
